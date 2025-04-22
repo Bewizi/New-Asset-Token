@@ -43,7 +43,7 @@ const toggleMobileNav = () => {
 
           <!--  Navlinks-->
 
-          <!--  Auth links-->
+          <!--  authLayout.vue links-->
           <div class="flex items-center gap-2">
             <AppLink to="#">
               <Button
