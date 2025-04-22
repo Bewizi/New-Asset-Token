@@ -29,7 +29,7 @@ import GenButton from '@/components/GenButton.vue'
         Invest Smarter
       </h1>
       <p
-        class="text-center font-euclid-a-regular text-[#010813CC] text-base md:text-lg lg:text-xl mt-8"
+        class="text-center font-euclid-a-regular text-[#010813CC] whitespace-pre-wrap lg:whitespace-break-spaces text-base md:text-lg lg:text-xl mt-8"
       >
         Take advantage of fractional ownership and join the growing <br />
         community of digital real estate investors.
@@ -39,10 +39,10 @@ import GenButton from '@/components/GenButton.vue'
       </div>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-5 flex items-center justify-center">
       <img
         alt="A hand holding a smartphone with a digital house-shaped object on the screen"
-        class="w-[300px] lg:w-full"
+        class="w-full lg:w-full"
         src="/images/general/house_image.png"
       />
     </div>
