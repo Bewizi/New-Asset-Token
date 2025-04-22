@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Gold West';
+  src: url('@/assets/web/fonts/gold-west.otf') format('opentype');
+  /*font-weight: 700;*/
+  font-style: normal;
+}
+
+.font-gold-west {
+  font-family: 'Gold West', sans-serif;
+}
