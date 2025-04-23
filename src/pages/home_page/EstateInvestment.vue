@@ -1,8 +1,28 @@
 <script lang="ts" setup>
+import { useIntersectionObserver } from '@vueuse/core'
 import AppContainer from '@/components/AppContainer.vue'
 import GenButton from '@/components/GenButton.vue'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { onMounted, ref } from 'vue'
+
+const observerElement = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  useIntersectionObserver(
+    observerElement,
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active')
+        console.log('Element is in view', entry.target)
+      }
+    },
+    {
+      root: null,
+      threshold: 0.5,
+    },
+  )
+})
 </script>
 
 <template>
@@ -21,9 +41,9 @@ import { Button } from '@/components/ui/button'
     </section>
 
     <!--    -->
-    <section class="relative mt-20">
+    <section ref="observerElement" class="relative mt-20 fade-in">
       <figure class="mb-5 lg:mb-0">
-        <img alt="" class="" src="/public/images/general/Modern-Townhouse-Complex.png" />
+        <img alt="" src="/public/images/general/Modern-Townhouse-Complex.png" />
       </figure>
       <!--  residential details  -->
       <aside class="lg:absolute lg:top-10 lg:-right-10 lg:w-5/12">
@@ -87,4 +107,15 @@ import { Button } from '@/components/ui/button'
   </AppContainer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
