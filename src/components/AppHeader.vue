@@ -45,14 +45,14 @@ const toggleMobileNav = () => {
 
           <!--  authLayout.vue links-->
           <div class="flex items-center gap-2">
-            <AppLink to="#">
+            <AppLink to="/auth/login">
               <Button
                 class="font-euclid-a-medium hover:text-white hover:bg-[#3A76F5CC]/85 bg-transparent text-[#3A76F5] text-lg"
               >
                 Login
               </Button>
             </AppLink>
-            <AppLink to="#">
+            <AppLink to="/auth/register">
               <Button
                 class="font-euclid-a-medium hover:text-white hover:bg-[#3A76F5CC]/85 bg-transparent text-[#3A76F5] text-lg"
               >
