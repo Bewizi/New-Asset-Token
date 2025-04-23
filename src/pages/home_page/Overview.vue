@@ -1,12 +1,32 @@
 <script lang="ts" setup>
 import AppContainer from '@/components/AppContainer.vue'
 import { Card } from '@/components/ui/card'
+import { useIntersectionObserver } from '@vueuse/core'
+import { onMounted, ref } from 'vue'
+
+const observerElement = ref<HTMLElement | null>(null)
+onMounted(() => {
+  useIntersectionObserver(
+    observerElement,
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active')
+        console.log('Element is in view', entry.target)
+      }
+    },
+    {
+      root: null,
+      threshold: 0.5,
+    },
+  )
+})
 </script>
 
 <template>
   <AppContainer class="mt-32 relative">
     <section
-      class="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between gap-10"
+      ref="observerElement"
+      class="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between gap-10 fade-in"
     >
       <figure>
         <img
@@ -80,4 +100,15 @@ import { Card } from '@/components/ui/card'
   </AppContainer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

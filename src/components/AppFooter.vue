@@ -3,7 +3,7 @@ import { Instagram, Linkedin } from 'lucide-vue-next'
 </script>
 
 <template>
-  <footer class="bg-[#010813] text-white py-28 px-5 md:px-0">
+  <footer class="bg-[#010813] text-white py-28 px-5 md:px-0 mt-40">
     <div class="max-w-7xl mx-auto flex justify-between flex-wrap md:px-5 lg:px-10">
       <div class="w-full lg:w-1/4 px-4 mb-10 lg:mb-0">
         <div class="flex items-center gap-2 mb-4">
