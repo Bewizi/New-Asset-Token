@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import HomePage from '@/pages/home_page/IndexPage.vue'
+import Homepage from '@/pages/home_page/Index.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 </script>
@@ -7,7 +7,7 @@ import AppFooter from '@/components/AppFooter.vue'
 <template>
   <AppHeader />
   <main>
-    <HomePage />
+    <Homepage />
   </main>
   <AppFooter />
 </template>
