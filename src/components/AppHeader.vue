@@ -3,7 +3,11 @@ import AppLink from '@/components/AppLink.vue'
 import AppContainer from '@/components/AppContainer.vue'
 import { Button } from '@/components/ui/button'
 import { AlignJustify, X } from 'lucide-vue-next'
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+
+const isFixed = ref<boolean>(false)
+const observerElement = ref<HTMLElement | null>(null)
 
 const navLinks = reactive([
   { id: 1, name: 'About', path: '/' },
@@ -17,10 +21,30 @@ const isMobileNavOpen = ref<boolean>(false)
 const toggleMobileNav = () => {
   isMobileNavOpen.value = !isMobileNavOpen.value
 }
+onMounted(() => {
+  useIntersectionObserver(
+    observerElement,
+    ([entry]) => {
+      isFixed.value = !entry.isIntersecting
+      console.log('Header viewport', entry)
+    },
+    {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.5,
+    },
+  )
+})
 </script>
 
 <template>
-  <AppContainer className="py-8 px-5 ">
+  <section ref="observerElement" class="h-[5px]"></section>
+  <AppContainer
+    :class="{
+      'fixed top-0 w-full z-[999] shadow-md bg-white/80 fadeDown backdrop-blur': isFixed,
+    }"
+    className="py-8 px-5 fade-in"
+  >
     <header class="relative">
       <section class="flex items-center justify-between">
         <!--  logo-->
@@ -102,4 +126,18 @@ const toggleMobileNav = () => {
   </AppContainer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fadeDown {
+  animation: slideDown 0.3s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+</style>
